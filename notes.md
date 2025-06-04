@@ -30,8 +30,14 @@ var x =10; ---> var x ; then x=10;
 
 
 ## 4] Self Invoked Function 
-    call it self once 
+    call itself once 
 
     ()() then (function (){
         console.log("hi self invoked fun.")
     }) ()
+
+    when add two self invoked fun should separate them with ; 
+
+    ✍ Why using Self Invoked Function ?
+
+    👌 because if we use the same variables we put each developer code in  Self Invoked Function  and error will gone
