@@ -11,3 +11,19 @@
   
   means separate declaration and initialization like this 
   var x =10; ---> var x ; then x=10;
+
+## 4] Declaration Function VS Expression Function
+  Declaration Function:
+
+function demo(){
+    console.log("demo);
+}
+
+
+Expression Function :
+
+var demo =function (){
+    console.log("demo);
+}
+
+then call fun like that demo()
