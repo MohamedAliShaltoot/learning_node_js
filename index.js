@@ -7,7 +7,22 @@
 
 // calculateSalary("John", 1000, 0, 0);
 
-var demo = function (printedDemo) {
-    console.log(printedDemo);
+var user={
+    name: "mo",
+    age:30,
+    children:{
+        child1:{
+            name:"omr"
+        },
+         child2:{
+            name:"ahmed"
+        }
+    }
 }
-demo("demo");
+
+
+
+let {name,age,children} = user  
+console.log(name,age,children);
+console.log( children.child1.name);
+console.log(user.children.child1.name);
