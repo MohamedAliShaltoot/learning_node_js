@@ -7,23 +7,23 @@
 
     a) false b)""  c) 0   d) null d) undefined
 
-## 3] hoisting 
-  
-  means separate declaration and initialization like this 
-  var x =10; ---> var x ; then x=10;
+## 3] hoisting
+
+means separate declaration and initialization like this
+var x =10; ---> var x ; then x=10;
 
 ## 4] Declaration Function VS Expression Function
-  Declaration Function:
 
-function demo(){
+    Declaration Function: can call it before or after fun implementation
+
+    function demo(){
     console.log("demo);
-}
+    }
 
+    Expression Function : can call it  after fun implementation only
 
-Expression Function :
-
-var demo =function (){
+    var demo =function (){
     console.log("demo);
-}
+    }
 
-then call fun like that demo()
+    then call fun like that demo()
