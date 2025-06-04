@@ -27,3 +27,11 @@ var x =10; ---> var x ; then x=10;
     }
 
     then call fun like that demo()
+
+
+## 4] Self Invoked Function 
+    call it self once 
+
+    ()() then (function (){
+        console.log("hi self invoked fun.")
+    }) ()
