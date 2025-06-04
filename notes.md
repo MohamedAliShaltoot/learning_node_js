@@ -29,11 +29,11 @@ var x =10; ---> var x ; then x=10;
     then call fun like that demo()
 
     🧨 important note :
-    
+
           after return inside fun statement will be as a ded code except declaration fun. will hoisting before applying return.
 
 
-## 4] Self Invoked Function 
+## 5] Self Invoked Function 
     call itself once 
 
     ()() then (function (){
@@ -45,3 +45,26 @@ var x =10; ---> var x ; then x=10;
     ✍ Why using Self Invoked Function ?
 
     👌 because if we use the same variables we put each developer code in  Self Invoked Function  and error will gone
+
+    ## 6] Destructing
+
+    avoid doting[user.children.dsd.sds.sd.trt]
+
+    we use this 
+
+    var user={
+        name: "mo",
+        age:30,
+        children:{
+            child1:{
+                name:"omr"
+            },
+             child2:{
+                name:"ahmed"
+            }
+        }
+    }
+
+    then use 
+
+    let {name,age,children} = user  [ user.children.child1.name == children.child1.name]
