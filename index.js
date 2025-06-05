@@ -1,29 +1,33 @@
 const http = module.require("http");
+/*
+I want to create CRUD Operation
+1- get all user | GET
+2- update users | PUT
+3- add users | POST
+4- delete users | DELETE
+
+*/
 let users = [
-    { id: 1, name: "John", age: 30 },
-    { id: 2, name: "Jane", age: 25 },
-    { id: 3, name: "Bob" , age: 35},
+  { id: 1, name: "John", email: "mohamed@gmail.com", age: 11 },
+  { id: 1, name: "John", email: "ahmed@gmail.com", age: 78},
+  { id: 1, name: "John", email: "hema@gmail.com", age: 44 },
+  { id: 1, name: "John", email: "gwad@gmail.com", age: 30 },
+  { id: 1, name: "John", email: "kamal@gmail.com", age: 21 },
 ];
 
-let posts = [
-    { id: 1, title: "Post 1", body: "This is post 1" },
-    { id: 2, title: "Post 2", body: "This is post 2" },
-    { id: 3, title: "Post 3", body: "This is post 3" },
-  ];
-
-
-
-
-
-
-
-
+// let posts = [
+//     { id: 1, title: "Post 1", body: "This is post 1" },
+//     { id: 2, title: "Post 2", body: "This is post 2" },
+//     { id: 3, title: "Post 3", body: "This is post 3" },
+//   ];
 
 
 const server = http.createServer((req, res) => {
+   // 1- get all user | GET
   res.statusCode = 200;
   res.setHeader("Content-Type", "application/json");
-if(req.url==="/users" && req.method==="GET"){
+  const{url,method}=req
+if(url==="/users" && method==="GET"){
     console.log(JSON.stringify(users));
     res.end(
         JSON.stringify(users)
