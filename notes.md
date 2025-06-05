@@ -46,7 +46,7 @@ var x =10; ---> var x ; then x=10;
 
     👌 because if we use the same variables we put each developer code in  Self Invoked Function  and error will gone
 
-    ## 6] Destructing
+## 6] Destructing
 
     avoid doting[user.children.dsd.sds.sd.trt]
 
@@ -68,3 +68,13 @@ var x =10; ---> var x ; then x=10;
     then use 
 
     let {name,age,children} = user  [ user.children.child1.name == children.child1.name]
+
+## 6] URL vs URI
+
+    URL : google.com/about.html
+    URI : google.com/about.html.product  but in the page product written like that Product 
+
+    so in url should write the path correctly 
+    but in 
+    uri it is optional
+
