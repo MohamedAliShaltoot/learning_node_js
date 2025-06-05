@@ -1,18 +1,18 @@
 const http = module.require("http");
 /*
 I want to create CRUD Operation
-1- get all user | GET
-2- update users | PUT
-3- add users | POST
+1- get all user | GET 🦾
+2- add users | POST 🦾
+3- update users | PUT
 4- delete users | DELETE
 
 */
 let users = [
   { id: 1, name: "John", email: "mohamed@gmail.com", age: 11 },
-  { id: 1, name: "John", email: "ahmed@gmail.com", age: 78},
-  { id: 1, name: "John", email: "hema@gmail.com", age: 44 },
-  { id: 1, name: "John", email: "gwad@gmail.com", age: 30 },
-  { id: 1, name: "John", email: "kamal@gmail.com", age: 21 },
+  { id: 2, name: "John", email: "ahmed@gmail.com", age: 78},
+//   { id: 1, name: "John", email: "hema@gmail.com", age: 44 },
+//   { id: 1, name: "John", email: "gwad@gmail.com", age: 30 },
+//   { id: 1, name: "John", email: "kamal@gmail.com", age: 21 },
 ];
 
 // let posts = [
@@ -37,6 +37,7 @@ if(url==="/users" && method==="GET"){
     
     req.on("data", (chunk) => {
         let user = JSON.parse(chunk); // add new user
+        user.id = users.length + 1; // automatically add id
         users.push(user); // add new user into users list
         res.end(JSON.stringify({ msg: "user added successfully" }));
     })
