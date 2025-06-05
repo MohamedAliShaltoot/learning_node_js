@@ -32,23 +32,40 @@ if(url==="/users" && method==="GET"){
     res.end(
         JSON.stringify(users)
       );
-}else if (url==="/users" &&method==="POST"){
-    res.statusCode = 201;
-    
-    req.on("data", (chunk) => {
-        let user = JSON.parse(chunk); // add new user
-        user.id = users.length + 1; // automatically add id
-        users.push(user); // add new user into users list
-        res.end(JSON.stringify({ msg: "user added successfully" }));
-    })
-    
-    //console.log(JSON.stringify(posts));
-    
-}else{
-    console.log(JSON.stringify({msg:"no such route"}));
-    res.end(
-        JSON.stringify({msg:"no such route"})
-      );
+}else if (url === "/users" && method === "POST") {
+  res.statusCode = 201;
+
+  req.on("data", (chunk) => {
+    let user = JSON.parse(chunk); // add new user
+    user.id = users.length + 1; // automatically add id
+    users.push(user); // add new user into users list
+    res.end(JSON.stringify({ msg: "user added successfully" }));
+  });
+
+  //console.log(JSON.stringify(posts));
+} else if (url.startsWith("/users/") && method === "PUT") {
+  //res.statusCode = 200;
+  let urlId = Number(url.split("/")[2]); // to get id from url
+  let userIndex = users.findIndex((user) => user.id === urlId);
+  if(userIndex == -1){
+    res.statusCode = 404;
+  return res.end(JSON.stringify({ msg: "user not found", status: false }));
+  }
+  req.on("data", (chunk) => {
+    let user = JSON.parse(chunk); // add new user
+   // user.id = users.length + 1; // automatically add id
+    users[userIndex].name = user.name;
+    users[userIndex].email = user.email;
+    users[userIndex].age = user.age;
+   users.push(user); // add new user into users list
+   res.statusCode = 200;
+    res.end(JSON.stringify({ msg: "user updated successfully",status:true }));
+});
+
+  //console.log(JSON.stringify(posts));
+} else {
+  console.log(JSON.stringify({ msg: "no such route" }));
+  res.end(JSON.stringify({ msg: "no such route" }));
 }
 
 
