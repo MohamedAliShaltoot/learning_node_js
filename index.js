@@ -28,15 +28,21 @@ const server = http.createServer((req, res) => {
   res.setHeader("Content-Type", "application/json");
   const{url,method}=req
 if(url==="/users" && method==="GET"){
-    console.log(JSON.stringify(users));
+    //console.log(JSON.stringify(users));
     res.end(
         JSON.stringify(users)
       );
-}else if (req.url==="/posts" && req.method==="GET"){
-    console.log(JSON.stringify(posts));
-    res.end(
-        JSON.stringify(posts)
-      );
+}else if (url==="/users" &&method==="POST"){
+    res.statusCode = 201;
+    
+    req.on("data", (chunk) => {
+        let user = JSON.parse(chunk); // add new user
+        users.push(user); // add new user into users list
+        res.end(JSON.stringify({ msg: "user added successfully" }));
+    })
+    
+    //console.log(JSON.stringify(posts));
+    
 }else{
     console.log(JSON.stringify({msg:"no such route"}));
     res.end(
