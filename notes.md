@@ -69,7 +69,7 @@ var x =10; ---> var x ; then x=10;
 
     let {name,age,children} = user  [ user.children.child1.name == children.child1.name]
 
-## 6] URL vs URI
+## 7] URL vs URI
 
     URL : google.com/about.html
     URI : google.com/about.html.product  but in the page product written like that Product 
@@ -77,4 +77,10 @@ var x =10; ---> var x ; then x=10;
     so in url should write the path correctly 
     but in 
     uri it is optional
+
+## 8] npm and modules
+    const os = module.require("node:os")
+    const fs = module.require("node:fs")
+    const http = module.require("node:http")
+
 
