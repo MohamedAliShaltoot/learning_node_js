@@ -10,18 +10,20 @@ I want to create CRUD Operation
 let users = [
   { id: 1, name: "John", email: "mohamed@gmail.com", age: 11 },
   { id: 2, name: "John", email: "ahmed@gmail.com", age: 78 },
-  
 ];
 
-
 const server = http.createServer((req, res) => {
-  // 1- get all user | GET
-  res.statusCode = 200;
+  const sendResponse = (code, msg) => {
+    res.statusCode = code;
+
+    return res.end(JSON.stringify(msg));
+  };
+
   res.setHeader("Content-Type", "application/json");
   const { url, method } = req;
+  // 1- get all user | GET
   if (url === "/users" && method === "GET") {
-    //console.log(JSON.stringify(users));
-    res.end(JSON.stringify(users));
+    sendResponse(200, users);
 
     //  2- add users | POST 🦾
   } else if (url === "/users" && method === "POST") {
@@ -31,7 +33,7 @@ const server = http.createServer((req, res) => {
       let user = JSON.parse(chunk); // add new user
       user.id = users.length + 1; // automatically add id
       users.push(user); // add new user into users list
-      res.end(JSON.stringify({ msg: "user added successfully" }));
+      sendResponse(201, { msg: "user added successfully" });
     });
 
     //  3- update users | PUT
@@ -40,23 +42,20 @@ const server = http.createServer((req, res) => {
     let urlId = Number(url.split("/")[2]); // to get id from url
     let userIndex = users.findIndex((user) => user.id === urlId);
     if (userIndex == -1) {
-      res.statusCode = 404;
-      return res.end(JSON.stringify({ msg: "user not found", status: false }));
+      sendResponse(404, { msg: "user not found", status: false });
     }
     req.on("data", (chunk) => {
       let user = JSON.parse(chunk); // add new user
-      // user.id = users.length + 1; // automatically add id
+
       users[userIndex].name = user.name;
       users[userIndex].email = user.email;
       users[userIndex].age = user.age;
       //here i want to replace the old user with the new user
-      //users.splice(userIndex, 1);
+
       // users.push(user); // add new user into users list
-      // why i commented this line because i want to replace the old user with the new user not push a new user and edit old user
-      res.statusCode = 200;
-      res.end(
-        JSON.stringify({ msg: "user updated successfully", status: true })
-      );
+      // why i commented this line because i want to replace the
+      //  old user with the new user not push a new user and edit old user
+      sendResponse(200, { msg: "user updated successfully", status: true });
     });
 
     //4- delete users | DELETE
@@ -65,16 +64,14 @@ const server = http.createServer((req, res) => {
     let urlId = Number(url.split("/")[2]); // to get id from url
     let userIndex = users.findIndex((user) => user.id === urlId);
     if (userIndex == -1) {
-      res.statusCode = 404;
-      return res.end(JSON.stringify({ msg: "user not found", status: false }));
+      sendResponse(404, { msg: "user not found", status: false });
     }
-    res.statusCode = 200;
-    users.splice(userIndex, 1);// delete user start from index and take 1 only
-    res.end(JSON.stringify({ msg: "user deleted successfully", status: true }));
-    
+
+    users.splice(userIndex, 1); // delete user start from index and take 1 only
+    sendResponse(200, { msg: "user deleted successfully", status: true });
   } else {
     console.log(JSON.stringify({ msg: "no such route" }));
-    res.end(JSON.stringify({ msg: "no such route" }));
+    sendResponse(200, { msg: "no such route" });
   }
 });
 server.listen(3000, () => console.log("listening on port 3000")); // every application must have a server listening on a port
