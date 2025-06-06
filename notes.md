@@ -84,3 +84,7 @@ var x =10; ---> var x ; then x=10;
     const http = module.require("node:http")
 
 
+## 9] Understand fs module 
+
+    writeFileAsync & readFileAsync
+    JSOn.parce & stringFy
