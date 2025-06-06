@@ -1,4 +1,6 @@
 const http = module.require("http");
+const fs = module.require("fs");
+
 /*
 I want to create CRUD Operation
 1- get all user | GET 🦾
@@ -7,10 +9,9 @@ I want to create CRUD Operation
 4- delete users | DELETE
 
 */
-let users = [
-  { id: 1, name: "John", email: "mohamed@gmail.com", age: 11 },
-  { id: 2, name: "John", email: "ahmed@gmail.com", age: 78 },
-];
+
+let users = JSON.parse(fs.readFileSync("users.json", "utf-8"));
+
 
 const server = http.createServer((req, res) => {
   const sendResponse = (code, msg) => {
@@ -33,6 +34,7 @@ const server = http.createServer((req, res) => {
       let user = JSON.parse(chunk); // add new user
       user.id = users.length + 1; // automatically add id
       users.push(user); // add new user into users list
+      fs.writeFileSync("users.json", JSON.stringify(users));
       sendResponse(201, { msg: "user added successfully" });
     });
 
