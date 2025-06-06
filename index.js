@@ -52,6 +52,7 @@ const server = http.createServer((req, res) => {
       users[userIndex].name = user.name;
       users[userIndex].email = user.email;
       users[userIndex].age = user.age;
+      fs.writeFileSync("users.json", JSON.stringify(users));
       //here i want to replace the old user with the new user
 
       // users.push(user); // add new user into users list
@@ -70,6 +71,7 @@ const server = http.createServer((req, res) => {
     }
 
     users.splice(userIndex, 1); // delete user start from index and take 1 only
+    fs.writeFileSync("users.json", JSON.stringify(users));
     sendResponse(200, { msg: "user deleted successfully", status: true });
   } else {
     console.log(JSON.stringify({ msg: "no such route" }));
