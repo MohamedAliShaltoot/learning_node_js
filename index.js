@@ -22,6 +22,8 @@ const server = http.createServer((req, res) => {
   if (url === "/users" && method === "GET") {
     //console.log(JSON.stringify(users));
     res.end(JSON.stringify(users));
+
+    //  2- add users | POST 🦾
   } else if (url === "/users" && method === "POST") {
     res.statusCode = 201;
 
@@ -32,7 +34,7 @@ const server = http.createServer((req, res) => {
       res.end(JSON.stringify({ msg: "user added successfully" }));
     });
 
-    //console.log(JSON.stringify(posts));
+    //  3- update users | PUT
   } else if (url.startsWith("/users/") && method === "PUT") {
     //res.statusCode = 200;
     let urlId = Number(url.split("/")[2]); // to get id from url
@@ -49,14 +51,15 @@ const server = http.createServer((req, res) => {
       users[userIndex].age = user.age;
       //here i want to replace the old user with the new user
       //users.splice(userIndex, 1);
-      users.push(user); // add new user into users list
+      // users.push(user); // add new user into users list
+      // why i commented this line because i want to replace the old user with the new user not push a new user and edit old user
       res.statusCode = 200;
       res.end(
         JSON.stringify({ msg: "user updated successfully", status: true })
       );
     });
 
-    //console.log(JSON.stringify(posts));
+    //4- delete users | DELETE
   } else if (url.startsWith("/users/") && method === "DELETE") {
     //res.statusCode = 200;
     let urlId = Number(url.split("/")[2]); // to get id from url
