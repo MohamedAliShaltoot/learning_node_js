@@ -2,16 +2,15 @@ const http = module.require("http");
 const fs = module.require("fs");
 
 /*
-I want to create CRUD Operation
-1- get all user | GET 🦾
-2- add users | POST 🦾
-3- update users | PUT
-4- delete users | DELETE
+* I want to create CRUD Operation
+! 1- get all user | GET 🦾
+? 2- add users | POST 🦾
+* params 3- update users | PUT
+* 4- delete users | DELETE
 
 */
 
 let users = JSON.parse(fs.readFileSync("users.json", "utf-8"));
-
 
 const server = http.createServer((req, res) => {
   const sendResponse = (code, msg) => {
@@ -22,23 +21,23 @@ const server = http.createServer((req, res) => {
 
   res.setHeader("Content-Type", "application/json");
   const { url, method } = req;
-  // 1- get all user | GET
+  //? 1- get all user | GET
   if (url === "/users" && method === "GET") {
     sendResponse(200, users);
 
-    //  2- add users | POST 🦾
+    //!  2- add users | POST 🦾
   } else if (url === "/users" && method === "POST") {
     res.statusCode = 201;
 
     req.on("data", (chunk) => {
-      let user = JSON.parse(chunk); // add new user
+      let user = JSON.parse(chunk); //? converts json to object to store it in users objects
       user.id = users.length + 1; // automatically add id
       users.push(user); // add new user into users list
       fs.writeFileSync("users.json", JSON.stringify(users));
       sendResponse(201, { msg: "user added successfully" });
     });
 
-    //  3- update users | PUT
+    //*  3- update users | PUT
   } else if (url.startsWith("/users/") && method === "PUT") {
     //res.statusCode = 200;
     let urlId = Number(url.split("/")[2]); // to get id from url
