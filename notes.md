@@ -86,5 +86,19 @@ var x =10; ---> var x ; then x=10;
 
 ## 9] Understand fs module 
 
-    writeFileAsync & readFileAsync
-    JSOn.parce & stringFy
+        writeFileAsync & readFileAsync
+        JSON.parse & stringFy 
+
+        JSON.parse:converts json to object to store it in users objects
+        JSON.stringify(msg): converts objects to object to store it in users json
+
+        object like that {
+            name:"mohamed,
+            age:23
+        }
+
+
+        json  like that {
+            "name":"mohamed",
+            "age":"23"
+        }
