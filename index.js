@@ -10,7 +10,8 @@ const fs = module.require("fs");
 
 */
 
-let users = JSON.parse(fs.readFileSync("users.json", "utf-8"));
+let users = JSON.parse(fs.readFileSync("users.json", "utf-8")); //* read json content then convert it to object
+
 
 const server = http.createServer((req, res) => {
   const sendResponse = (code, msg) => {
